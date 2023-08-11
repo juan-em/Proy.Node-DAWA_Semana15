@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Mi Aplicación
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+  body
+    .container
+      h1 Mi Aplicación
+      h2 Datos existentes
+      ul.list-group
+        each dato in datos
+          li.list-group-item
+            span= dato.columna1
+            span= ' - '
+            span= dato.columna2
+            span= ' - '
+            span= dato.columna3
+            span
+              a.btn.btn-primary.btn-sm.mx-1(href=`/editar/${dato.id}`) Editar
+              a.btn.btn-danger.btn-sm.mx-1(href=`/eliminar/${dato.id}`) Eliminar
+      a.btn.btn-success(href="/buscar") Buscar avanzada de registros
+      h2 Agregar nuevo dato
+      form(action="/" method="POST")
+        .form-group
+          label(for="nuevoDato") Nuevo Dato
+          input.form-control.form-control-lg(type="text", name="nuevoDato", placeholder="Ingrese un nuevo dato")
+        .form-group
+          label(for="columna2") Columna 2
+          input.form-control.form-control-lg(type="text", name="columna2", placeholder="Ingrese el valor para Columna 2")
+        .form-group
+          label(for="columna3") Columna 3
+          input.form-control.form-control-lg(type="text", name="columna3", placeholder="Ingrese el valor para Columna 3")
+        button.btn.btn-primary(type="submit") Agregar
+      
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")

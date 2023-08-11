@@ -1,0 +1,67 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Búsqueda Avanzada
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+  body
+    .container
+      h1 Búsqueda Avanzada
+
+      // Formulario para buscar materias por nombre de alumno
+      form(action="/buscar/materiasPorAlumno" method="POST")
+        .form-group
+          label(for="nombreAlumnoMateria") Nombre del Alumno
+          input.form-control(type="text", name="nombreAlumnoMateria", placeholder="Ingrese el nombre del alumno")
+        button.btn.btn-primary(type="submit") Buscar Materias por Alumno
+
+      // Tabla para mostrar los resultados de la búsqueda de materias por alumno
+      if materiasPorAlumnoResultados && materiasPorAlumnoResultados.length > 0
+        h2 Resultados de Búsqueda de Materias por Alumno
+        table.table
+          thead
+            tr
+              th Nombre de la Materia
+          tbody
+            each resultado in materiasPorAlumnoResultados
+              tr
+                td= resultado.nombreMateria
+
+      // Formulario para buscar alumnos por nombre de materia
+      form(action="/buscar/alumnosPorMateria" method="POST")
+        .form-group
+          label(for="nombreMateriaAlumno") Nombre de la Materia
+          input.form-control(type="text", name="nombreMateriaAlumno", placeholder="Ingrese el nombre de la materia")
+        button.btn.btn-primary(type="submit") Buscar Alumnos por Materia
+
+      // Tabla para mostrar los resultados de la búsqueda de alumnos por materia
+      if alumnosPorMateriaResultados && alumnosPorMateriaResultados.length > 0
+        h2 Resultados de Búsqueda de Alumnos por Materia
+        table.table
+          thead
+            tr
+              th Nombre del Alumno
+          tbody
+            each resultado in alumnosPorMateriaResultados
+              tr
+                td= resultado.nombreAlumno
+
+      // Formulario para buscar alumnos inscritos en más de una materia
+      br
+      form(action="/buscar/alumnosMultimateria" method="POST")
+        button.btn.btn-warning(type="submit") Alumnos que por error fueron inscritos más de una vez en la misma materia
+
+      // Tabla para mostrar los resultados de la búsqueda de alumnos inscritos en más de una materia
+      if alumnosMultimateriaResultados && alumnosMultimateriaResultados.length > 0
+        h2 Resultados de Búsqueda de Alumnos con Más de una Materia
+        table.table
+          thead
+            tr
+              th Nombre del Alumno
+              th Nombre de la Materia
+          tbody
+            each resultado in alumnosMultimateriaResultados
+              tr
+                td= resultado.nombreAlumno
+                td= resultado.nombreMateria

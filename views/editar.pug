@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Editar Dato
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+  body
+    .container
+      h1 Editar Dato
+      form(action=`/editar/${dato.id}` method="POST")
+        .form-group
+          label(for="nuevoDato") Nuevo Dato
+          input.form-control.form-control-lg(type="text", name="nuevoDato", value=dato.columna1)
+        .form-group
+          label(for="columna2") Columna 2
+          input.form-control.form-control-lg(type="text", name="columna2", value=dato.columna2)
+        .form-group
+          label(for="columna3") Columna 3
+          input.form-control.form-control-lg(type="text", name="columna3", value=dato.columna3)
+        button.btn.btn-primary(type="submit") Guardar Cambios
+
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
